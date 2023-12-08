@@ -49,12 +49,12 @@ def search(request):
     # if this is a POST request we need to process the form data
     if request.method == "POST":
         # create a form instance and populate it with data from the request:
-        form = MedocForm(request.POST)
+        medoc_form = MedocForm(request.POST)
         # check whether it's valid:
-        if form.is_valid():
+        if medoc_form.is_valid():
             # process the data in form.cleaned_data as required
-            medoc_name = form.cleaned_data["medoc_name"]
-            emplacement = form.cleaned_data["emplacement"]
+            medoc_name = medoc_form.cleaned_data["medoc_name"]
+            emplacement = medoc_form.cleaned_data["emplacement"]
             
             #put those medicaments in a list
             list_medicaments = []
@@ -68,13 +68,14 @@ def search(request):
                     list_medicaments.append(medicament)
     
             #return it such as we can use the result in our search page
-            return render(request, 'MedecineApp/search.html', {"list_medicaments": list_medicaments, "form":form})
+            return render(request, 'MedecineApp/search.html', {"list_medicaments": list_medicaments, "medoc_form":medoc_form})
 
             # redirect to a new URL:
             #return HttpResponseRedirect("/thanks/")
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = MedocForm()
+        medoc_form = MedocForm()
+        
 
-    return render(request, "MedecineApp/search.html", {"form": form})
+    return render(request, "MedecineApp/search.html", {"medoc_form": medoc_form})
