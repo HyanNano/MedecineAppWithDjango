@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Acceuil</title>
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style.css'%}">
+    
+   
+</head>
+<body>
+    <div class="header">
+        <p class="app-title">MedicineApp</p>
+        <div class="profile-button">
+            <button>My Profile</button>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Rechercher un medicament">
+        <button>Rechercher</button>
+    </div>
+    <div class="container">
+        <div class="news-card">
+            <img src="{% static 'MedecineApp/Images/amo.jpg' %}" alt="Dafalgan">
+            <div class="name">
+                <h2>Amoxiciline</h2>
+                <p class="category">Catégorie</p>
+            </div>
+            <div class="news-content">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat consectetur adipiscing elit, sed do eiusmod aliqua. (Bref description du medicament)"</p>
+            </div>
+            <div class="simple-button">
+             
+                <button><a href="{% url 'rechercher' %}">View</a></button>
+            </div>
+            <div class="complex-button">
+                <button>Actus</button>
+            </div>
+            
+        </div>
+
+        <div class="news-card">
+            <img src="{% static 'paxlovid-medicaments-pfizer-covid.jpg' %}" alt="Dafalgan">
+            <div class="name">
+                <h2>Paxlovid</h2>
+                <p class="category">Catégorie</p>
+            </div>
+            <div class="news-content">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat consectetur adipiscing elit, sed do eiusmod aliqua. (Bref description du medicament)"</p>
+            </div>
+            <div class="simple-button">
+              
+                <button><a href="{% url 'rechercher' %}">View</a></button>
+            </div>
+            <div class="complex-button">
+                <button>Actus</button>
+            </div>
+            
+        </div>
+
+        <div class="news-card">
+           <img src="{% static 'pax.jpg' %}" alt="Dafalgan">
+            <div class="name">
+                <h2>Paxevid</h2>
+                <p class="category">Catégorie</p>
+            </div>
+            <div class="news-content">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat consectetur adipiscing elit, sed do eiusmod aliqua. (Bref description du medicament)"</p>
+            </div>
+            <div class="simple-button">
+                <button><a href="{% url 'rechercher' %}">View</a></button>
+            </div>
+            <div class="complex-button">
+                <button>Actus</button>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <img src="{% static 'dafalgan-500-mg-gelules-2plq-8-16.jpg' %}" alt="Dafalgan">
+            <div class="name">
+                <h2>Dafalgan</h2>
+                <p class="category">Catégorie</p>
+            </div>
+            <div class="news-content">
+                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat consectetur adipiscing elit, sed do eiusmod aliqua. (Bref description du medicament)"</p>
+            </div>
+            <div class="simple-button">
+                <button><a href="{% url 'rechercher' %}">View</a></button>
+            </div>
+            <div class="complex-button">
+                <button>Actus</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'med.js' %}"></script>
+</body>
+</html>

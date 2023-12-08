@@ -1,0 +1,70 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style.css'%}">
+    <script src = "{% static "MedecineApp/Js/med.js" %}"></script>
+   
+</head>
+
+<body>
+    <div class="header">
+        <p class="app-title">MedicineApp</p>
+        <div class="profile-button">
+            <button>My Profile</button>
+        </div>
+    </div>
+
+    <div class="search-bar">
+
+        <form action="/MedecineApp/Search/" method="post">
+        
+       {% comment %}  <label for="medoc_name">Medoc name: </label>
+        <input id="medoc_name" type="text" name="medoc_name" placeholder="Entrer le nom du medicament">
+         <!--receive the medoc_name in a variable in a way that i can use it in my search function as a parameter -->
+         {% endcomment %}
+        
+            {%  csrf_token %}
+            {{form}} 
+       
+            <button type = "submit">Search</button>
+     
+        {% comment %} <label for="emplacement">Emplacement: </label>
+        <input id="emplacement" type="text" name="emplacement" placeholder="Entrer votre emplacement">
+        <!-- receive the person_emplacement in a variable  in a way that we can use it to provide nearest pharmacies -->
+        <button>selectionner</button> {% endcomment %}
+
+        
+        
+        </form>
+        
+
+    </div>
+
+     <!-- use the result of the search function : the list of medicaments ; and print the result for each medicament -->
+    {% if list_medicaments %}
+        {% for medicament in list_medicaments %}
+            <div class="container">
+                <div class="news-cardr">
+                    <div class="namer">
+                        <h3>{{ medicament.nom_medicament }} <!-- nom du medicament--> </h3>
+                        <p class="pharmacie">{{ medicament.nom_pharmacie }} <!-- pharmacie qui possede le medicament --> </p>
+                        <p class="tiret">-</p>
+                        <p class="distance">Distance <!-- distance a cette pharmacie --> </p>
+                    </div>
+                    <div class="simple-buttonr">
+                        <button>Localisation <!-- Lorsqu'on y clique dessus il nous fournit la localisation de la pharmacie qui possede le medicament --> </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+
+</html>

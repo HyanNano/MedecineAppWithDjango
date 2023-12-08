@@ -22,8 +22,13 @@ class Medicament(models.Model):
     id_medicament = models.AutoField(primary_key=True)
     nom_medicament = models.CharField(max_length=100)
     quantite = models.IntegerField(default=0)
+    #description = models.CharField(max_length=500)
     date_expiration = models.DateField()
     nom_pharmacie = models.ForeignKey(Pharmacie,on_delete=models.DO_NOTHING)
+
+    class meta:
+        verbose_name="Medicament"
+        verbose_name_plural="Medicaments"
 
 
 class Actualite(models.Model):

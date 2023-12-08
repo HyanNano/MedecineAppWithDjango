@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'MedecineApp',
+    'MedecineApp.apps.MedecineappConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,10 +85,10 @@ WSGI_APPLICATION = 'MedecineAppProject.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME":'medecineBase',
-        'USER':'administrator',
-        'PASSWORD':'administrator',
-        'HOST':'/var/run/postgresql',
+        "NAME":'medecinebase',
+        'USER':'postgres',
+        'PASSWORD':'postgres',
+        'HOST':'127.0.0.1',
         'PORT':'5432',
     }
 }

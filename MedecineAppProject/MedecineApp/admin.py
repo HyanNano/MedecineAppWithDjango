@@ -14,7 +14,7 @@ class MedicamentAdmin(admin.ModelAdmin):
 
 @admin.register(Pharmacie)
 class PharmacieAdmin(admin.ModelAdmin):
-   list_display=("nom_pharmacie","heure_ouverture","heure_fermeture","longitude","latitude")
+  list_display=("nom_pharmacie","heure_ouverture","heure_fermeture","longitude","latitude")
 
 @admin.register(Actualite)
 class ActualiteAdmin(admin.ModelAdmin):

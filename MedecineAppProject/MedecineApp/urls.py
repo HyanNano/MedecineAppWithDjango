@@ -2,6 +2,13 @@ from django.urls import path
 
 from . import views
 
+#app_name = "MedecineApp"
 urlpatterns = [
+    
     path("", views.index, name="index"),
+    
+    path('Rechercher/',views.rechercher, name='rechercher'),
+
+    path('Search/',views.search, name='search'),
+    
 ]

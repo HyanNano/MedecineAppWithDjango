@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rechercher</title>
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style.css'%}">
+   
+</head>
+<body>
+    <div class="header">
+        <p class="app-title">MedicineApp</p>
+        <div class="profile-button">
+            <button>My Profile</button>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Entrer le nom du medicament">
+        <button>Rechercher</button>
+        <input type="text" placeholder="Entrer votre emplacement">
+        <button>selectionner</button>
+    </div>
+    <div class="container">
+        <div class="news-cardr">
+            <img src="{% static 'MedecineApp/Images/amo.jpg' %}" alt="Dafalgan">
+            <div class="namer">
+                <h2>Amoxiciline</h2>
+                <p class="pharmacie">PharmaciedeMelen</p>
+                <p class="tiret">-</p>
+                <p class="distance">5km</p>
+            </div>
+            <div class="simple-buttonr">
+                <button>View</button>
+            </div>
+        </div>
+    </div>
+</html>
+        
