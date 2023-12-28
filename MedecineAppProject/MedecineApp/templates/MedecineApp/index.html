@@ -1,8 +1,9 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Acceuil</title>
+    <title>Accueil</title>
     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,12 @@
    
 </head>
 <body>
+    {% if user.is_authenticated %}
+      <p>Connecter sous {{user.username}} | <a href="{% url 'logout' %}">Deconnexion</a></p>
+    {% else %}
+       <p> <a href="{% url 'login' %}">Connexion</a>|<a href="{% url 'register' %}">Inscription</a></p>
+    {% endif %}
+
     <div class="header">
         <p class="app-title">MedicineApp</p>
         <div class="profile-button">
@@ -19,7 +26,10 @@
     </div>
     <div class="search-bar">
         <input type="text" placeholder="Rechercher un medicament">
-        <button>Rechercher</button>
+        {% comment %} Cliquer sur le bouton rechercher vous envoit sur la page search.html {% endcomment %}
+        <a href="{% url 'search' %}" >
+            <button>Rechercher</button>
+        </a>
     </div>
     <div class="container">
         <div class="news-card">

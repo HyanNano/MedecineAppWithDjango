@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.template import loader
-from .models import Medicament
-from .forms import MedocForm
+
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
+
+from .models import Medicament,Actualite
+from .forms import MedocForm,ActuForm
 
 # Create your views here.
 
@@ -79,3 +84,61 @@ def search(request):
         
 
     return render(request, "MedecineApp/search.html", {"medoc_form": medoc_form})
+
+def publish(request):
+    
+    if request.method == "POST":
+        actu_form = ActuForm(request.POST)
+        if actu_form.is_valid():
+            #process
+            actu_title = actu_form.cleaned_data["title"]
+            actu_author = actu_form.cleaned_data["author"]
+            actu_date = actu_form.cleaned_data["date"]
+            actu_content = actu_form.cleaned_data["content"]
+            
+            actu = Actualite.objects.create(titre=actu_title, auteur=actu_author, date_publication=actu_date, contenu=actu_content)
+            
+            actu_form = ActuForm()            
+    else:
+        actu_form = ActuForm()
+        
+    return render(request, "MedecineApp/publish.html", {"actu_form": actu_form})
+
+
+def login_user(request):
+    if request.method == 'POST':
+        username=request.POST["username"]
+        password =request.POST["password"]
+
+        user = authenticate(request,username=username, password=password)
+
+        if user is not None:
+            login(request,user)
+
+            return redirect("index") 
+        else :
+            messages.info(request,"identifiant ou mot de passe incorrecte")     
+    form= AuthenticationForm()
+    return render(request,"MedecineApp/login.html",{"form":form })
+
+
+def logout_user(request):
+    logout(request)
+
+    return redirect("index") 
+
+def register_user(request):
+    if request.method == 'POST':
+        form=UserCreationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("index") 
+    else:
+        form= UserCreationForm()
+
+    return render(request,"MedecineApp/register.html",{"form":form })            
+
+
+def actualite(request):
+    pass

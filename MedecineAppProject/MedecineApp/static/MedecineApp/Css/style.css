@@ -2,8 +2,71 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
+    background-size: cover;
+}
+header {
+    background-color: #FAFAF5;
+    color: #187B07;
+    padding: 10px;
+    font-weight: 600;
+    line-height: 26px;
+    height: 150px;
+}
+.navbarr {
+    background-color: #4CAF50;
+    color: white;
+    padding: 7px 330px 7px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+.navbarr:hover, .navbarr:focus {
+    background-color: #3e8e41;
+}
+header p {
+    font-size: 55px;
+    padding: 0px 20px;
+    margin-top: 30px;
+}
+.profile-button {
+    background: #4CAF50;
+    margin: 0px 93rem;
+    padding-top: 0rem;
+    padding-bottom: 10px;
+    line-height: 100px;
+    margin-top: -120px;
+    
+}
+nav ul {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    margin-top: -70px;
 }
 
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
 .container {
     width: 100%;
     background-color: white;
@@ -12,7 +75,9 @@ body {
 .news-card {
     width: 1600px;
     height: 159px;
-    margin: 5px 30px 30px 30px;
+    margin: 20px 20px 0px 25px;
+    padding-left: 20px;
+    padding-right: 20px;
     background: #FAFAF5;
     border-radius: 24px;
     overflow: hidden;
@@ -21,18 +86,9 @@ body {
     position: relative;
 }
 
-.news-card img {
-    width: 148px;
-    height: 146px;
-    position: absolute;
-    left: 4px;
-    top: 9px;
-    border-radius: 60px;
-}
-
 .news-content {
     position: absolute;
-    left: 360px;
+    left: 220px;
     right: 10px;
     color: black;
     font-size: 20px;
@@ -44,24 +100,15 @@ body {
 
 .name{
     position: absolute;
-    left: 175px;
+    left: 25px;
     font-size: 20px;
+    top: 35px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    line-height: 26px;
-    word-wrap: break-word; 
-}
-.category{
-    position: absolute;
-    left: 0px;
-    top: 60px;
+    line-height: 26px; 
     color: #187B07;
-    font-size: 20px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    line-height: 26px;
-    word-wrap: break-word;
 }
+
 .news-content h2 {
     font-size: 20px;
 }
@@ -70,9 +117,6 @@ body {
     font-size: 20px;
 }
 
-.news-content .category {
-    color: #187B07;
-}
 
 .search-bar input{
     width: 40rem;
@@ -96,56 +140,32 @@ body {
     margin-top: 30px;
 }
 
-.app-title {
-    position: absolute;
-    left: 40px;
-    top: -5px;
-    color: #187B07;
-    font-size: 50px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    line-height: 26px;
-    word-wrap: break-word;
-}
-
-.profile-button {
-    background: #187B07;
-    border-radius: 20px;
-    padding: 15px 20px;
-    margin: 20px 90rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .profile-button button {
     font-size: 20px;
+    padding: 10px 30px;
+    margin: 10px 30px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    line-height: 26px;
-    word-wrap: break-word;
-    background: #187B07;
+    line-height: 20px;
+    background: #4CAF50;
+    border: none;
+    cursor: pointer;
+}
+.profile-button button:hover {
+    background-color: #3e8e41;
 }
 .simple-button button{
     font-size: 18px;
     font-family: 'Inter';
     font-weight: 400;
     line-height: 26px;
-    margin: 115px 95rem;
+    margin: 100px 95rem;
     display: block;
     cursor: pointer;
     text-decoration: none;
 }
 .a{
     text-decoration: none;
-}
-.complex-button button{
-    font-size: 18px;
-    font-family: 'Inter';
-    font-weight: 400;
-    line-height: 26px;
-    margin: -147px 90rem;
-    display: block;
 }
 
 /*******************************************Page Rechercher******************************/
@@ -159,15 +179,6 @@ body {
     border: 2px rgba(24, 123, 7, 0.67) solid;
     margin-top: 30px;
     position: relative;
-}
-
-.news-cardr img {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    left: 4px;
-    top: 0px;
-    border-radius: 60px;
 }
 
 .namer{
@@ -217,4 +228,121 @@ body {
     line-height: 26px;
     margin: 40px 60rem;
     display: block;
+}
+
+/**************************************login***************************************/
+  
+  .login-container {
+    background-color: #FAFAF5;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    margin: 0;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #4CAF509a;
+  }
+
+  /****************************************sign_in***********************************/
+  .register-container {
+    background-color: #FAFAF5;
+    padding: 160px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    margin: 0;
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .input-group input[type="checkbox"] {
+    margin-right: 50px;
+    margin-top: 0px;
+  }
+
+  /************************************Actualites***********************************/
+  .news-card-actus {
+    width: 1600px;
+    height: auto;
+    margin: 20px 0px 0px 25px;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #FAFAF5;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px rgba(24, 123, 7, 0.67) solid;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    color: black;
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+.name-titre p{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 26px;
+    word-wrap: break-word; 
+    color: #187B07;
 }

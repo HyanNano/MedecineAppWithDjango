@@ -14,12 +14,20 @@
 </head>
 
 <body>
-    <div class="header">
+    <header>
         <p class="app-title">MedicineApp</p>
         <div class="profile-button">
             <button>My Profile</button>
         </div>
-    </div>
+        <nav>
+            <ul>
+                <center>
+                    <li ><button class="navbarr"><a href="{% url 'search' %}">HOME</a></button></li>
+                    <li><button class="navbarr"><a href="{% url 'actualite' %}">ACTUS</a></button></li>
+                </center>
+            </ul>  
+        </nav>
+    </header>
 
     <div class="search-bar">
 

@@ -11,4 +11,12 @@ urlpatterns = [
 
     path('Search/',views.search, name='search'),
     
+    path('Publish/', views.publish, name='publish'),
+    
+    path('login/',views.login_user, name='login'),
+    path('logout/',views.logout_user, name='logout'),
+    path('register/',views.register_user, name='register'),
+    
+    path('actualite/',views.actualite, name='actualite'),
+    
 ]
