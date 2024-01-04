@@ -6,7 +6,10 @@ from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 
-from .models import Medicament,Actualite
+from django.conf import settings
+import googlemaps
+
+from .models import Medicament,Actualite,Pharmacie
 from .forms import MedocForm,ActuForm
 
 # Create your views here.
@@ -49,7 +52,25 @@ def rechercher(request):
     context={"Medicament": Medicament.objects.all()}
     return render(request,'MedecineApp/rechercher.html', context)
   
-  
+ 
+ 
+def calcul_distance(origine, destination):
+    gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
+    
+    result = gmaps.distance_matrix(origine, destination, units='metric')
+    distance = result['rows'][0]['elements'][0]['distance']['text']
+    duree = result['rows'][0]['elements'][0]['duration']['text']
+   
+    distance_duree = { "distance" : distance , "duree" : duree }
+    
+    return distance_duree
+
+
+def test_distance(request):
+    dist = calcul_distance( "etoug-ebe, Yaounde", (3.8405788, 11.4782645))
+    
+    return render(request, "MedecineApp/distance.html", {"dist" : dist })
+ 
 def search(request):
     # if this is a POST request we need to process the form data
     if request.method == "POST":
@@ -70,13 +91,25 @@ def search(request):
             medicaments = Medicament.objects.all()
             for medicament in medicaments:
                 if medoc_name in medicament.nom_medicament:
-                    list_medicaments.append(medicament)
+                    if medicament.quantite > 0 :
+                        #Trouver la pharmacie du medoc
+                        pharmacie = Pharmacie.objects.get( nom_pharmacie = medicament.nom_pharmacie)
+                        
+                        #Calcul de la distance a l'emplacement
+                        destination_longitude = pharmacie.longitude
+                        destination_latitude = pharmacie.latitude
+                        distance_duree = calcul_distance( emplacement, (destination_latitude, destination_longitude))
+                        
+                        medicament_distance = {"medicament" : medicament, 
+                                            "distance" : distance_duree['distance'] , 
+                                            "duree" : distance_duree['duree'] }
+                        
+                        list_medicaments.append(medicament_distance)
+
     
             #return it such as we can use the result in our search page
-            return render(request, 'MedecineApp/search.html', {"list_medicaments": list_medicaments, "medoc_form":medoc_form})
-
-            # redirect to a new URL:
-            #return HttpResponseRedirect("/thanks/")
+            return render(request, 'MedecineApp/search.html', {"list_medicaments": list_medicaments, "medoc_form":medoc_form, 'api_key': settings.GOOGLE_API_KEY})
+        
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -142,3 +175,9 @@ def register_user(request):
 
 def actualite(request):
     pass
+
+def affichage_routes(request):
+    context = {
+        'api_key': settings.GOOGLE_API_KEY
+    }
+    return render(request, 'MedecineApp/route.html', context)

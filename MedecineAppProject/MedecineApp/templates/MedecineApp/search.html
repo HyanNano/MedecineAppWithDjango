@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style.css'%}">
+     <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style3.css'%}">
     <script src = "{% static "MedecineApp/Js/med.js" %}"></script>
-   
+    
 </head>
 
 <body>
@@ -57,22 +57,76 @@
 
      <!-- use the result of the search function : the list of medicaments ; and print the result for each medicament -->
     {% if list_medicaments %}
-        {% for medicament in list_medicaments %}
+        {% for medicament_distance in list_medicaments %}
             <div class="container">
                 <div class="news-cardr">
                     <div class="namer">
-                        <h3>{{ medicament.nom_medicament }} <!-- nom du medicament--> </h3>
-                        <p class="pharmacie">{{ medicament.nom_pharmacie }} <!-- pharmacie qui possede le medicament --> </p>
-                        <p class="tiret">-</p>
-                        <p class="distance">Distance <!-- distance a cette pharmacie --> </p>
+                        
+                        <strong>{{ medicament_distance.medicament.nom_medicament }} <!-- nom du medicament--> </strong>
+                        <strong class="pharma">{{ medicament_distance.medicament.nom_pharmacie }} <!-- pharmacie qui possede le medicament --> </strong>
+
+                        <strong > {{ medicament_distance.distance }} <!-- distance a cette pharmacie --> </strong>
+                        <strong > {{ medicament_distance.duree }} <!-- duree a cette pharmacie --> </strong>
+                        
                     </div>
                     <div class="simple-buttonr">
-                        <button>Localisation <!-- Lorsqu'on y clique dessus il nous fournit la localisation de la pharmacie qui possede le medicament --> </button>
+                        <button class="itineraire">Itineraire <!-- Lorsqu'on y clique dessus il nous fournit la localisation de la pharmacie qui possede le medicament --> </button>
                     </div>
+                    <div class="map"></div>
                 </div>
             </div>
         {% endfor %}
     {% endif %}
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=directions"></script>
+    <script>
+        function initMap(cas,orig,destin) {
+            let mapper = cas.querySelector(".map")
+            mapper.style.height = "400px"
+    
+            const map = new google.maps.Map(mapper, {
+                center: { lat: 48.8566, lng: 2.3522 },  // Coordonnées de Paris
+                zoom: 8,
+            });
+            
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            
+            const request = {
+                origin: orig,
+                destination: destin,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(result);
+                }
+            });
+        }
+        
+        
+        let input = document.getElementById("id_emplacement")
+
+        let origine = input.value
+
+        const Cas = document.querySelectorAll(".news-cardr")
+        
+        for (const cas of Cas){
+            let pharmacie = cas.querySelector(".pharma")
+            let destination = pharmacie.innerHTML
+                        
+            let button = cas.querySelector(".itineraire")
+        
+            button.onclick = function() {
+                initMap(cas, origine, destination);
+              };
+        }
+
+    </script> 
 </body>
 
 </html>

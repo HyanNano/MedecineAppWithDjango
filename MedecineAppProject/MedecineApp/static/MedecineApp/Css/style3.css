@@ -74,7 +74,7 @@ nav ul li a {
 
 .news-card {
     width: 1600px;
-    height: 159px;
+    height: auto;
     margin: 20px 20px 0px 25px;
     padding-left: 20px;
     padding-right: 20px;
@@ -171,7 +171,7 @@ nav ul li a {
 /*******************************************Page Rechercher******************************/
 .news-cardr {
     width: 1150px;
-    height: 100px;
+    height: auto;
     margin: 30px 30px 30px 220px;
     background: #FAFAF5;
     border-radius: 24px;
@@ -205,7 +205,7 @@ nav ul li a {
     position: absolute;
     left: 500px;
     top: -8px;
-    font-size: 50px;
+    font-size: 25px;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 10px;

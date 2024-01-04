@@ -1,3 +1,6 @@
+from django.conf import settings
+from django.conf.urls.static import static
+
 from django.urls import path
 
 from . import views
@@ -19,4 +22,7 @@ urlpatterns = [
     
     path('actualite/',views.actualite, name='actualite'),
     
-]
+    path('itineraires/', views.affichage_routes, name="itineraire"),
+    
+    path('testdist/',views.test_distance, name='testdistance'),
+] 

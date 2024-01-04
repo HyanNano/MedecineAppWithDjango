@@ -1,0 +1,68 @@
+<!-- routes.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Affichage des itinéraires</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=directions"></script>
+   
+</head>
+<body>
+    <strong id="origine">etoug-ebe, Yaounde</strong>
+    <div class="partie">
+        <button class="itineraire"> itineraire1 </button>
+        <strong class="destination">Pharmacie de Melen</strong>
+        <div class="map"></div>
+    </div>
+    <div class="partie">
+        <button class="itineraire"> itineraire2 </button>
+        <strong class="destination">Pharmacie Emia</strong>
+        <div class="map"></div>
+    </div>
+    <div class="partie">
+        <button class="itineraire"> itineraire3 </button>
+        <strong class="destination">Pharmacie de Melen</strong>
+        <div class="map"></div>
+    </div>
+    
+    <script>
+        function initMap(element,orig,destin) {
+            let mapper = element.querySelector(".map")
+            mapper.style.height = "400px"
+
+            const map = new google.maps.Map(mapper, {
+                center: { lat: 48.8566, lng: 2.3522 },  // Coordonnées de Paris
+                zoom: 8,
+            });
+            
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            
+            const request = {
+                origin: orig,
+                destination: destin,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            
+            directionsService.route(request, function(result, status) {
+                if (status == 'OK') {
+                    directionsRenderer.setDirections(result);
+                }
+            });
+        }
+        let partie = document.querySelectorAll(".partie")
+
+        let origine = document.getElementById("origine").innerHTML
+        for(const part of partie){
+            let button = part.querySelector(".itineraire")
+            
+            let destination = part.querySelector(".destination").innerHTML
+
+            button.onclick = function(){
+                initMap(part,origine,destination);
+            };
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carte</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carte</h1>
+    <div> </div>
+    <div id="map"></div>
+
+    <script>
+        function initMap(liste_positions) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7
+        });
+
+        for (var i = 0; i < liste_positions.length; i++) {
+            var position = liste_positions[i];
+            var marker = new google.maps.Marker({
+                position: {lat: position[0], lng: position[1]},
+                map: map,
+                title: position[2]
+            });
+        }
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrP4A3Mgnx13MvzrC1-VMP0zRs9R_As2U&callback=initMap" async defer></script>
+</body>
+</html>
+```
