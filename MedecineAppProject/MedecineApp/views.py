@@ -116,6 +116,7 @@ def search(request):
     else:
         medoc_form = MedocForm()
         
+        
 
     return render(request, "MedecineApp/search.html", {"medoc_form": medoc_form})
 
