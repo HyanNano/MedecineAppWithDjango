@@ -11,6 +11,9 @@
      <link rel="stylesheet"  href="{% static 'MedecineApp/Css/style3.css'%}">
     <script src = "{% static "MedecineApp/Js/med.js" %}"></script>
     
+    <style>
+        
+    </style>
 </head>
 
 <body>
@@ -83,11 +86,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&libraries=directions"></script>
     <script>
         function initMap(cas,orig,destin) {
-            let mapper = cas.querySelector(".map")
-            mapper.style.height = "400px"
-    
-            const map = new google.maps.Map(mapper, {
-                center: { lat: 48.8566, lng: 2.3522 },  // Coordonnées de Paris
+            let mapContainer = cas.querySelector(".map")
+            
+        
+            mapContainer.style.height = "400px"
+
+            const map = new google.maps.Map(mapContainer, {
+                center: { lat: 3.844119, lng:  11.501346 },  // Coordonnées de Yaounde
                 zoom: 8,
             });
             
@@ -106,6 +111,7 @@
                     directionsRenderer.setDirections(result);
                 }
             });
+
         }
         
         
@@ -120,10 +126,22 @@
             let destination = pharmacie.innerHTML
                         
             let button = cas.querySelector(".itineraire")
+
+            let mapContainer = cas.querySelector(".map")
         
-            button.onclick = function() {
-                initMap(cas, origine, destination);
-              };
+            button.addEventListener("click", function() {
+                if(mapContainer.classList.contains("hidden")){
+                    mapContainer.innerHTML = ""
+                    mapContainer.style.height = "auto"
+
+                    mapContainer.classList.remove("hidden")
+                } else {
+                    initMap(cas, origine, destination);
+
+                    mapContainer.classList.add("hidden")
+                }
+ 
+              });
         }
 
     </script> 

@@ -5,6 +5,7 @@ from django.template import loader
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required,permission_required
 
 from django.conf import settings
 import googlemaps
@@ -118,6 +119,7 @@ def search(request):
 
     return render(request, "MedecineApp/search.html", {"medoc_form": medoc_form})
 
+@permission_required("MedecineApp.add_actualite",raise_exception=True)
 def publish(request):
     
     if request.method == "POST":
