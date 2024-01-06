@@ -178,6 +178,7 @@ def register_user(request):
 
 def actualite(request):
     pass
+    #waiting...
 
 def affichage_routes(request):
     context = {
