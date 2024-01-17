@@ -107,9 +107,12 @@ def search(request):
                         
                         list_medicaments.append(medicament_distance)
 
+            
+            #trier les medicament_distance par ordre de distance croissante
+            sorted_medicaments = sorted(list_medicaments, key=lambda x: x['distance'])
     
             #return it such as we can use the result in our search page
-            return render(request, 'MedecineApp/search.html', {"list_medicaments": list_medicaments, "medoc_form":medoc_form, 'api_key': settings.GOOGLE_API_KEY})
+            return render(request, 'MedecineApp/search.html', {"list_medicaments": sorted_medicaments, "medoc_form":medoc_form, 'api_key': settings.GOOGLE_API_KEY})
         
 
     # if a GET (or any other method) we'll create a blank form
